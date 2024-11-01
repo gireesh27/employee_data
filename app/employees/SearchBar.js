@@ -2,7 +2,7 @@
 "use client";
 import { useState } from 'react';
 
-export default function SearchBar({searchTerm,handleStatusFilter,handleSearch,statusFilter }) {
+export default function SearchBar({searchTerm,handleStatusFilter,handleSearch,statusFilters }) {
 
   // const [statusFilter, setStatusFilter] = useState('all');
   // const [searchTerm, setSearchTerm] = useState('');

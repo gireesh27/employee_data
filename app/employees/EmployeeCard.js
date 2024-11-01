@@ -1,7 +1,7 @@
 // app/employees/EmployeeCard.js
 import Image from 'next/image';
 
-export default function EmployeeCard({ employee, onDetails, onBlock,onToggle,modal }) {
+export default function EmployeeCard({ employee, onDetails, handleBlock,onToggle,modal }) {
   return ( 
    
      <div
@@ -41,7 +41,7 @@ export default function EmployeeCard({ employee, onDetails, onBlock,onToggle,mod
           onToggle={onToggle}
           onClick={() => {
             
-            onBlock(employee.id)
+            handleBlock(employee)
           }}
           className="px-3 py-1 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600 focus:outline-none"
         >

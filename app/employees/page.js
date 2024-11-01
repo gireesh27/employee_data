@@ -9,12 +9,20 @@ import SelectedEmployee from './SelectedEmployee';
 import { employees as initialEmployees } from '../../data/data';
 
 export default function EmployeePage() {
-  const [employees, setEmployees] = useState(initialEmployees);
-  const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   const [statusFilter, setStatusFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const handleStatusFilter = (status) => setStatusFilter(status);
+
+  const [employees, setEmployees] = useState(initialEmployees);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+
+    let ActiveEmps = initialEmployees.filter((emp)=> emp.status==="active")
+    let InActiveEmps = initialEmployees.filter((emp)=> emp.status==="inactive")
+
+  const handleStatusFilter = (status) => {
+    setStatusFilter(status)
+  };
+
   const handleSearch = (e) => setSearchTerm(e.target.value.toLowerCase());
 
   const [modal, setModal] = useState(true);
@@ -22,7 +30,7 @@ export default function EmployeePage() {
   const toggleModal = () => {
     setModal((modal)=>!modal);
   }
-
+ 
    const filteredEmployees = employees.filter((employee) => {
     const matchesSearch = employee.name.toLowerCase().includes(searchTerm);
     const matchesStatus = statusFilter === 'all' || employee.status === statusFilter;
@@ -30,12 +38,15 @@ export default function EmployeePage() {
   });
 
 
-  const handleBlock = (id) => {
-    // setEmployees(filteredEmployees.filter((employee) => employee.id !== id));
-    // setFilteredEmployees(filteredEmployees.filter((employee) => employee.id !== id));
-    // if (selectedEmployee && selectedEmployee.id === id) {
-    //   setSelectedEmployee(null);
-    // }
+  const handleBlock = (coming_emp) => {
+      if(coming_emp.status==="active"){
+      ActiveEmps = ActiveEmps.filter((emp)=>emp.id!==coming_emp.id)
+      InActiveEmps.push(coming_emp);
+      coming_emp.status="inactive";
+      }
+      else{
+        return;
+      }
   };
 
   const handleDetails = (employee) => {
@@ -50,11 +61,12 @@ export default function EmployeePage() {
         searchTerm={searchTerm}
         handleSearch={handleSearch}
         handleStatusFilter={handleStatusFilter}
-        statusFilter={statusFilter}/>
+        statusFilter={statusFilter}
+       />
        
         <EmployeeList
           filteredEmployees={filteredEmployees}
-          onBlock={handleBlock}
+          handleBlock={handleBlock}
           onDetails={handleDetails}
           onToggle={toggleModal}
           modal={modal}
@@ -66,7 +78,6 @@ export default function EmployeePage() {
          onToggle={toggleModal}
          />}
          
-        
       </div>
     </div>
   );
