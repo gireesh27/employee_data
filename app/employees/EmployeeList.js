@@ -1,7 +1,7 @@
 // app/employees/EmployeeList.js
 import EmployeeCard from './EmployeeCard';
 
-export default function EmployeeList({ employees, onDetails, onBlock }) {
+export default function EmployeeList({ employees, onDetails, onBlock,onToggle,modal }) {
 
 
   
@@ -13,6 +13,8 @@ export default function EmployeeList({ employees, onDetails, onBlock }) {
           employee={employee}
           onDetails={onDetails}
           onBlock={onBlock}
+          onToggle={onToggle}
+          modal={modal}
         />
       ))}
     </div>

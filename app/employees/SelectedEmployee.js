@@ -1,20 +1,17 @@
 // app/employees/SelectedEmployee.js
 import Image from "next/image";
-export default function SelectedEmployee({ employee,onClose }) {
+export default function SelectedEmployee({ employee,onToggle,modal }) {
     if (!employee) return null; // Return nothing if no employee is selected
   
-    return (<div className="px-40 py-4 border border-gray-300 rounded-lg bg-gray-50 shadow-sm mx-auto">
-      <div className="flex flex-auto">
+    return (
+    <>
+    {modal && 
+    <div className="w-lvw h-svh top-0 left-0 right-0 bottom-0 fixed">
+      <div onClick={onToggle} className="w-lvw h-svh top-0 left-0 right-0 bottom-0 fixed bg-slate-300 opacity-50"></div>
+      <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 translate-y-1/2 leading-3 bg-white py-4 px-6 rounded max-w-2xl min-w-80">
       <h2 className="text-xl font-semibold mb-2">Employee Details: </h2>
-        <button 
-          onClick={onClose} 
-          className="mx-auto w-auto h-1/6 px-2 py-2 bg-blue-500 text-white rounded-md font-medium hover:bg-red-600"
-        >
-          Close
-        </button>
-        </div>
         <div className="flex items-center gap-4">
-          <div>
+          <div className="flex flex-col gap-3">
             <p><strong>Name:</strong> {employee.name}</p>
             <p><strong>Role:</strong> {employee.role}</p>
             <p><strong>Email:</strong> {employee.email}</p>
@@ -32,6 +29,9 @@ export default function SelectedEmployee({ employee,onClose }) {
           />
         </div>
         </div>
+        </div>
+}
+        </>
     );
   }
   

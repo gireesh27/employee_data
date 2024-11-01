@@ -14,6 +14,12 @@ export default function EmployeePage() {
   const [filteredEmployees, setFilteredEmployees] = useState(initialEmployees);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
+  const [modal, setModal] = useState(true);
+
+  const toggleModal = (modal) => {
+    setModal(!modal);
+  };
+
   const handleSearch = (query) => {
     const filtered = employees.filter((employee) =>
       employee.name.toLowerCase().includes(query.toLowerCase())
@@ -31,7 +37,6 @@ export default function EmployeePage() {
 
   const handleDetails = (employee) => {
     setSelectedEmployee(employee);
-    
   };
 
   return (
@@ -39,12 +44,19 @@ export default function EmployeePage() {
       <Header selectedEmployee={selectedEmployee} />
       <div className="p-4">
         <SearchBar onSearch={handleSearch} />
-        <SelectedEmployee employee={selectedEmployee} />
+       
         <EmployeeList
           employees={filteredEmployees}
           onBlock={handleBlock}
           onDetails={handleDetails}
+          onToggle={toggleModal}
+          modal={modal}
         />
+        
+         <SelectedEmployee 
+         employee={selectedEmployee}
+         modal={modal} />
+        
       </div>
     </div>
   );

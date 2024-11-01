@@ -1,7 +1,7 @@
 // app/employees/EmployeeCard.js
 import Image from 'next/image';
 
-export default function EmployeeCard({ employee, onDetails, onBlock }) {
+export default function EmployeeCard({ employee, onDetails, onBlock,onToggle,modal }) {
   return ( 
    
      <div
@@ -29,13 +29,20 @@ export default function EmployeeCard({ employee, onDetails, onBlock }) {
       {/* Action Buttons */}
       <div className="flex space-x-3 mt-4">
         <button
-          onClick={() => onDetails(employee)}
+          onClick={() => {
+              onToggle(!modal)
+              onDetails(employee)
+          }}
           className="px-3 py-1 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none"
         >
           Details
         </button>
         <button
-          onClick={() => onBlock(employee.id)}
+          onToggle={onToggle}
+          onClick={() => {
+            
+            onBlock(employee.id)
+          }}
           className="px-3 py-1 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600 focus:outline-none"
         >
           Block
