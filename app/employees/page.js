@@ -10,29 +10,32 @@ import { employees as initialEmployees } from '../../data/data';
 
 export default function EmployeePage() {
   const [employees, setEmployees] = useState(initialEmployees);
-  const [filteredEmployees, setFilteredEmployees] = useState(initialEmployees);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('');
+  const handleStatusFilter = (status) => setStatusFilter(status);
+  const handleSearch = (e) => setSearchTerm(e.target.value.toLowerCase());
 
   const [modal, setModal] = useState(true);
 
   const toggleModal = () => {
     setModal((modal)=>!modal);
   }
- 
 
-  const handleSearch = (query) => {
-    const filtered = employees.filter((employee) =>
-      employee.name.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredEmployees(filtered);
-  };
+   const filteredEmployees = employees.filter((employee) => {
+    const matchesSearch = employee.name.toLowerCase().includes(searchTerm);
+    const matchesStatus = statusFilter === 'all' || employee.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
+
 
   const handleBlock = (id) => {
-    setEmployees(employees.filter((employee) => employee.id !== id));
-    setFilteredEmployees(filteredEmployees.filter((employee) => employee.id !== id));
-    if (selectedEmployee && selectedEmployee.id === id) {
-      setSelectedEmployee(null);
-    }
+    // setEmployees(filteredEmployees.filter((employee) => employee.id !== id));
+    // setFilteredEmployees(filteredEmployees.filter((employee) => employee.id !== id));
+    // if (selectedEmployee && selectedEmployee.id === id) {
+    //   setSelectedEmployee(null);
+    // }
   };
 
   const handleDetails = (employee) => {
@@ -43,10 +46,14 @@ export default function EmployeePage() {
     <div>
       <Header selectedEmployee={selectedEmployee} />
       <div className="p-4">
-        <SearchBar onSearch={handleSearch} />
+        <SearchBar 
+        searchTerm={searchTerm}
+        handleSearch={handleSearch}
+        handleStatusFilter={handleStatusFilter}
+        statusFilter={statusFilter}/>
        
         <EmployeeList
-          employees={filteredEmployees}
+          filteredEmployees={filteredEmployees}
           onBlock={handleBlock}
           onDetails={handleDetails}
           onToggle={toggleModal}
