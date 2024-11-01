@@ -11,20 +11,20 @@ export default function SearchBar({ onSearch }) {
   };
 
   return (
-    <div><span>
+    <div className='flex flex-row'>
      <input
       type="text"
       placeholder="Search the Employer"
-      className="p-2 border rounded w-3/4 mb-4"
+      className=" ml-10  px-12 py-2 border rounded w-3/4 mb-4"
       value={query}
       onChange={handleSearch}
     />
-    </span>
-    <span className=' gap-5 g-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded '>
-     <button>All</button>
-     <button>Active</button>
-     <button>InActive</button>
-    </span>
-    </div> 
+     <div 
+      className='border-2 border-black flex flex-row space-x-4 cursor-pointer ml-10 text-xl font-extrabold py-4 px-4 rounded font-serif text-blue-600 mb-4'>
+      <a>All</a>
+      <a>Active</a>
+      <a>InActive</a>
+     </div> 
+    </div>
   );
 }
