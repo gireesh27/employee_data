@@ -8,7 +8,6 @@ import SearchBar from './SearchBar';
 import SelectedEmployee from './SelectedEmployee';
 import { employees as initialEmployees } from '../../data/data';
 
-
 export default function EmployeePage() {
   const [employees, setEmployees] = useState(initialEmployees);
   const [filteredEmployees, setFilteredEmployees] = useState(initialEmployees);
@@ -16,9 +15,10 @@ export default function EmployeePage() {
 
   const [modal, setModal] = useState(true);
 
-  const toggleModal = (modal) => {
-    setModal(!modal);
-  };
+  const toggleModal = () => {
+    setModal((modal)=>!modal);
+  }
+ 
 
   const handleSearch = (query) => {
     const filtered = employees.filter((employee) =>
@@ -52,10 +52,13 @@ export default function EmployeePage() {
           onToggle={toggleModal}
           modal={modal}
         />
-        
-         <SelectedEmployee 
+        { modal &&
+        <SelectedEmployee 
          employee={selectedEmployee}
-         modal={modal} />
+         modal={modal} 
+         onToggle={toggleModal}
+         />}
+         
         
       </div>
     </div>

@@ -7,8 +7,11 @@ export default function SelectedEmployee({ employee,onToggle,modal }) {
     <>
     {modal && 
     <div className="w-lvw h-svh top-0 left-0 right-0 bottom-0 fixed">
-      <div onClick={onToggle} className="w-lvw h-svh top-0 left-0 right-0 bottom-0 fixed bg-slate-300 opacity-50"></div>
-      <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 translate-y-1/2 leading-3 bg-white py-4 px-6 rounded max-w-2xl min-w-80">
+      <div 
+      onClick={onToggle} 
+      className="w-lvw h-svh top-0 left-0 right-0 bottom-0 fixed bg-slate-300 opacity-50">
+      </div>
+      <div className=" w-2/5 h-auto absolute top-32 left-1/2 transform -translate-x-1/2 translate-y-1/2 leading-3 bg-white py-4 px-6 rounded max-w-4xl min-w-80">
       <h2 className="text-xl font-semibold mb-2">Employee Details: </h2>
         <div className="flex items-center gap-4">
           <div className="flex flex-col gap-3">
@@ -29,6 +32,10 @@ export default function SelectedEmployee({ employee,onToggle,modal }) {
           />
         </div>
         </div>
+        <button className="absolute top-1/4 right-1/4 py-5 px-8 font-bold" 
+        onClick={onToggle}>
+              CLOSE
+        </button>
         </div>
 }
         </>
