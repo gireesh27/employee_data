@@ -13,9 +13,9 @@ export default function EmployeeCard({ employee, onDetails, handleBlock,onToggle
       <Image
         src={employee.image}
         alt={employee.name}
-        width={80}
-        height={80}
-        className="rounded-full mb-3"
+        width={100}
+        height={100}
+        className="mb-3 rounded-md w-36 h-44 max-w-2xl min-w-20"
       />
 
       {/* Employee Name and Role */}
