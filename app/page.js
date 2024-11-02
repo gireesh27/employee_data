@@ -10,7 +10,7 @@ export default function Home() {
       <h2> <strong>/employees</strong>     is the navigated root for this project</h2>
       
       <h2 className='my-4'>open <strong> Github </strong> for this project 
-        <a href='https://github.com/gireesh27/EdTech-website' className='text-lg'> 🔗 </a>
+        <a href='https://github.com/gireesh27/employee_data' className='text-lg'> 🔗 </a>
       </h2>
       <hr/>
       <div className=" flex flex-row space-x-5 bottom-full  right-0 font-serif font-extrabold text-base ">
