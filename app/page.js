@@ -15,7 +15,7 @@ export default function Home() {
       <hr/>
       <div className=" flex flex-row space-x-5 bottom-full  right-0 font-serif font-extrabold text-base ">
       <div>Developed by </div>
-      <div className='font-extrabold text-sky-700 '> Gireesh</div>
+      <div className='font-extrabold text-sky-700 '>Gireesh</div>
       </div>
     </div>
   );
