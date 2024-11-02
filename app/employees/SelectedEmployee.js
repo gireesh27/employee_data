@@ -22,6 +22,7 @@ export default function SelectedEmployee({ employee,onToggle,modal }) {
             <p><strong>Address:</strong> {employee.address}</p>
             <p><strong>Shift:</strong> {employee.shift}</p>
             <p><strong>Salary:</strong>{employee.salary}</p>
+            <p><strong>Status:</strong>{employee.status}</p>
           </div>
           <Image
             width={150}
